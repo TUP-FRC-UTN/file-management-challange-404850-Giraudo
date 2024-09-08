@@ -12,6 +12,7 @@ import { OWNERS } from '../../data/file.storage';
 export class FormFileComponent {
 
   owners : FileOwner[] = OWNERS;
+  files : FileType[] = [FileType.FILE, FileType.FOLDER];
 
   @Output() hideForm: EventEmitter<boolean> = new EventEmitter<boolean>();
 

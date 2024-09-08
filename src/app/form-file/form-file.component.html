@@ -15,10 +15,16 @@
         <div class="col">
             <label for="validationServer03" class="form-label">Tipo Archivo</label>
             <select class="form-select dorm-control is-valid" id="validationServer03">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                @for(file of files; track file){
+                    @switch (file){
+                        @case (0){
+                            <option value={{file}}>Folder</option>
+                        }
+                        @case (1){
+                            <option value={{file}}>File</option>
+                        }
+                    }
+                }
             </select>
         </div>
     </div>

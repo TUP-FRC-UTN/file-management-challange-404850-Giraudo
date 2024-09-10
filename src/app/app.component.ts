@@ -19,11 +19,12 @@ export class AppComponent {
 
 
   changeView() {
-    this.showForm = true;
+    this.showForm = !this.showForm;
   }
 
   addItem(item : FileItem){
     this.files.push(item);
+    this.showForm = false;
   }
 
   deleteItems() {

@@ -17,29 +17,44 @@ export class FormFileComponent {
   files : FileType[] = [FileType.FILE, FileType.FOLDER];
   folders : FileItem[] = FILE_LIST.filter(file => file.type == FileType.FOLDER);
   
-
-  item : FileItem = {
+  selectedOwner : FileOwner = {
+    name: '',
+    avatarUrl: ''
+  };
+  emptyItem : FileItem = {
     id: '0',
     creation: new Date(),
     name: 'default name',
     owners: [],
     type: FileType.FILE
   };
+  item : FileItem = this.emptyItem;
 
   @Output() hideForm: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Output() addFileItem: EventEmitter<FileItem> = new EventEmitter<FileItem>();
 
   mainPage(){
-    this.hideForm.emit(true);
+    this.hideForm.emit(false);
   }
 
   sendFileItem(form : NgForm){
-    console.log(form);
+    // console.log(form);
     console.log("item a cargar: ", this.item)
     if(form.valid){
-      this.addFileItem.emit
+      this.addFileItem.emit(this.item);
+
+      this.item = this.emptyItem; // limpio el form
     }
+  }
+
+  addOwner() {
+    if(!this.item.owners.includes(this.selectedOwner)){
+      this.item.owners.push(this.selectedOwner)
+    }
+  }
+  removeOwner(index: number){
+    this.item.owners.splice(index, 1);
   }
   
 }

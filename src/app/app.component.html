@@ -23,7 +23,8 @@
         }
     } @else{
         <div>
-            <app-form-file></app-form-file>
+            <app-form-file (addFileItem)="addItem($event)"
+                (hideForm)="changeView()"></app-form-file>
         </div>
     }
 </div>

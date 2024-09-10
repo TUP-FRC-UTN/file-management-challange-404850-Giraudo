@@ -1,21 +1,24 @@
-<form class="row g-3 p-2 mt-4">
+<form #form="ngForm" (ngSubmit)="sendFileItem(form)" class="row g-3 p-2 mt-4">
     <div class="row mt-4">
         <div class="col">
             <label for="validationServer01" class="form-label">Nombre</label>
-            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Ingrese el nombre" required>
+            <input #name="ngModel" [(ngModel)]="item.name" name="name"
+                type="text" class="form-control is-valid" id="validationServer01" placeholder="Ingrese el nombre" required>
         </div>
     </div>
     <div class="row mt-4">
         <div class="col">
             <label for="validationServer02" class="form-label">Fecha</label>
-            <input type="date" class="form-control is-valid" id="validationServer02" required>
+            <input #name="ngModel" [(ngModel)]="item.creation" name="creation"
+                type="date" class="form-control is-valid" id="validationServer02" required>
         </div>
     </div>
     <div class="row mt-4">
         <div class="col">
             <label for="validationServer03" class="form-label">Tipo Archivo</label>
-            <select class="form-select dorm-control is-valid" id="validationServer03">
-                @for(file of files; track file){
+            <select [(ngModel)]="item.type" name="type"
+                class="form-select dorm-control is-valid" id="validationServer03">
+                @for(file of files; track $index){
                     @switch (file){
                         @case (0){
                             <option value={{file}}>Folder</option>
@@ -31,8 +34,12 @@
     <div class="row mt-4">
         <div class="">
             <label for="validationServer04" class="form-label">Carpeta</label>
-            <select class="form-select dorm-control is-valid" id="validationServer04">
-                
+            <select [(ngModel)]="item.parentId" name="parentId"
+                class="form-select dorm-control is-valid" id="validationServer04">
+                <option value="" disabled selected>Selecciona una opción</option>
+                @for(folder of folders; track folder){
+                    <option value={{folder.id}}>{{folder.name}}</option>
+                }
             </select>
         </div>
     </div>

@@ -22,6 +22,10 @@ export class AppComponent {
     this.showForm = true;
   }
 
+  addItem(item : FileItem){
+    this.files.push(item);
+  }
+
   deleteItems() {
     alert("borrar archivos")
   }

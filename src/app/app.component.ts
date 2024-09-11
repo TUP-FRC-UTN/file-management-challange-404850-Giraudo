@@ -16,6 +16,7 @@ export class AppComponent {
   files: FileItem[] = FILE_LIST;
   title = 'file-management';
   showForm : boolean = false;
+  filesToDelete : string[] = [];
 
 
   changeView() {
@@ -27,8 +28,23 @@ export class AppComponent {
     this.showForm = false;
   }
 
-  deleteItems() {
-    alert("borrar archivos")
+  addItemDelete(id : string) {
+    if(!this.filesToDelete.includes(id)){
+      this.filesToDelete.push(id);
+    } else {
+      this.filesToDelete = this.filesToDelete.filter(fId => fId !== id);
+    }
+    console.log(this.filesToDelete)
   }
   
+  deleteItems(){
+    if(this.filesToDelete.length > 1){
+      alert('borrando varios archivos')
+      this.files = this.files.filter(item => !this.filesToDelete.includes(item.id));
+      this.filesToDelete = [];
+    } else {
+      this.files = this.files.filter(item => !this.filesToDelete.includes(item.id));
+      this.filesToDelete = [];
+    }
+  }
 }

@@ -18,7 +18,7 @@
     @if(!showForm){
 
         @for(item of files; track item){
-            <app-list-item [item]=item></app-list-item>
+            <app-list-item (selectedItem)="addItemDelete($event)" [item]=item></app-list-item>
             <hr />
         }
     } @else{

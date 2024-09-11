@@ -1,7 +1,7 @@
 <div class="row">
 
     <div class="col">
-        <input type="checkbox">
+        <input #name="ngModel" [(ngModel)]="selected" (change)="sendSelected()" type="checkbox"><p>{{selected}}</p>
     </div>
     <div class="col">
         @if(item.type == folder){
